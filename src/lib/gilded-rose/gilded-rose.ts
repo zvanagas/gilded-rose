@@ -81,11 +81,11 @@ export class GildedRose {
     );
   }
 
-  private getMinValueWithRestrictions(value: number) {
+  private getMinValueWithRestrictions(value: number): number {
     return Math.min(value, DEFAULT_MAXIMUM_QAULITY);
   }
 
-  private getMaxValueWithRestrictions(value: number) {
+  private getMaxValueWithRestrictions(value: number): number {
     return Math.max(DEFAULT_MINIMUM_QUALITY, value);
   }
 
