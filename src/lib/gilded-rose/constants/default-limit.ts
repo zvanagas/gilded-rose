@@ -1,0 +1,2 @@
+export const DEFAULT_MINIMUM_QUALITY = 0;
+export const DEFAULT_MAXIMUM_QAULITY = 50;
