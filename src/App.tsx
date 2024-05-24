@@ -4,6 +4,7 @@ import { GildedRose, Item } from './lib/gilded-rose/gilded-rose';
 import {
   AGED_BRIE,
   BACKSTAGE_PASSES,
+  CONJURED,
   SULFURAS,
 } from './lib/gilded-rose/constants/items';
 import {
@@ -21,9 +22,15 @@ function App() {
     new Item(AGED_BRIE, 4, 2),
     new Item(SULFURAS, 4, 2),
     new Item(BACKSTAGE_PASSES, 15, 2),
+    new Item(CONJURED, 4, 10),
   ]);
 
   const gildedRose = new GildedRose(items);
+
+  const handleUpdate = () => {
+    const updatedItems = gildedRose.updateQuality();
+    setItems([...updatedItems]);
+  };
 
   const renderItems = () => (
     <Table>
@@ -49,14 +56,7 @@ function App() {
   return (
     <div className="flex flex-col gap-4 items-center">
       {renderItems()}
-      <Button
-        onClick={() => {
-          const updatedItems = gildedRose.updateQuality();
-          setItems([...updatedItems]);
-        }}
-      >
-        Update
-      </Button>
+      <Button onClick={handleUpdate}>Advance by one day</Button>
     </div>
   );
 }

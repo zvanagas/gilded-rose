@@ -1,4 +1,9 @@
-import { AGED_BRIE, BACKSTAGE_PASSES, SULFURAS } from './constants/items';
+import {
+  AGED_BRIE,
+  BACKSTAGE_PASSES,
+  CONJURED,
+  SULFURAS,
+} from './constants/items';
 import { GildedRose, Item } from './gilded-rose';
 
 describe('GildedRose:', () => {
@@ -128,6 +133,51 @@ describe('GildedRose:', () => {
       expect(gildedRose.items[0].quality).toBe(50);
     });
   });
+
+  describe('Conjured:', () => {
+    it('descreases sale date by `1`', () => {
+      const gildedRose = new GildedRose([
+        {
+          name: CONJURED,
+          sellIn: 4,
+          quality: 2,
+        },
+      ]);
+
+      gildedRose.updateQuality();
+
+      expect(gildedRose.items[0].sellIn).toBe(3);
+    });
+
+    it('decreases quality by `2` when sale date approaches', () => {
+      const gildedRose = new GildedRose([
+        {
+          name: CONJURED,
+          sellIn: 10,
+          quality: 20,
+        },
+      ]);
+
+      gildedRose.updateQuality();
+
+      expect(gildedRose.items[0].quality).toBe(18);
+    });
+
+    it('does not go below quality `0` when sale date passes', () => {
+      const gildedRose = new GildedRose([
+        {
+          name: CONJURED,
+          sellIn: 10,
+          quality: 1,
+        },
+      ]);
+
+      gildedRose.updateQuality();
+
+      expect(gildedRose.items[0].quality).toBe(0);
+    });
+  });
+
   describe('Default item:', () => {
     it('descreases sale date by `1`', () => {
       const gildedRose = new GildedRose([

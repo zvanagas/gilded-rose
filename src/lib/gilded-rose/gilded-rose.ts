@@ -2,7 +2,12 @@ import {
   DEFAULT_MAXIMUM_QAULITY,
   DEFAULT_MINIMUM_QUALITY,
 } from './constants/default-limit';
-import { AGED_BRIE, BACKSTAGE_PASSES, SULFURAS } from './constants/items';
+import {
+  AGED_BRIE,
+  BACKSTAGE_PASSES,
+  CONJURED,
+  SULFURAS,
+} from './constants/items';
 
 export class Item {
   name: string;
@@ -43,6 +48,11 @@ export class GildedRose {
           this.decreaseDays(item);
           break;
         }
+        case CONJURED: {
+          this.updateConjuredQuality(item);
+          this.decreaseDays(item);
+          break;
+        }
         default: {
           this.updateDefaultItemQuality(item);
           this.decreaseDays(item);
@@ -73,6 +83,10 @@ export class GildedRose {
     }
 
     item.quality = this.getMinValueWithRestrictions(quality);
+  }
+
+  private updateConjuredQuality(item: Item) {
+    item.quality = this.getMaxValueWithRestrictions(item.quality - 2);
   }
 
   private updateDefaultItemQuality(item: Item): void {
