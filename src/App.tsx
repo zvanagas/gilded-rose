@@ -23,6 +23,7 @@ function App() {
     new Item(SULFURAS, 4, 2),
     new Item(BACKSTAGE_PASSES, 15, 2),
     new Item(CONJURED, 4, 10),
+    new Item('Default item', 10, 10),
   ]);
 
   const gildedRose = new GildedRose(items);

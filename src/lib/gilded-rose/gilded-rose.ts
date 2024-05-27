@@ -85,7 +85,7 @@ export class GildedRose {
     item.quality = this.getMinValueWithRestrictions(quality);
   }
 
-  private updateConjuredQuality(item: Item) {
+  private updateConjuredQuality(item: Item): void {
     item.quality = this.getMaxValueWithRestrictions(item.quality - 2);
   }
 
